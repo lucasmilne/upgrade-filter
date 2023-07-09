@@ -1,15 +1,11 @@
-package upgradefilter.patch;
+package com.lockeddoors.upgradefilter.patch;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.screens.MasterDeckSortHeader;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
-import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 
-import java.lang.reflect.Field;
 import java.util.Comparator;
 
 public class UpgradeFilterPatches {
@@ -18,7 +14,6 @@ public class UpgradeFilterPatches {
             MasterDeckViewScreen.class
     })
     public static class AddUpgradeFilterButton {
-        private static final Comparator<AbstractCard> BY_UPGRADE = ((a, b) -> (a.timesUpgraded) - (b.timesUpgraded));
         @SpirePrefixPatch
         public static void patch(MasterDeckSortHeader __instance) {
             SortHeaderButton upgradeButton = new SortHeaderButton("Upgraded", MasterDeckSortHeader.START_X, 0.0F, __instance);
@@ -36,7 +31,7 @@ public class UpgradeFilterPatches {
             boolean.class
     })
     public static class ApplyUpgradeFilter {
-        private static final Comparator<AbstractCard> BY_UPGRADE = ((a, b) -> ("" + !a.upgraded + a.name).compareTo("" + !b.upgraded + b.name));;
+        private static final Comparator<AbstractCard> BY_UPGRADE = (Comparator.comparing(a -> (!a.upgraded + a.name)));;
         @SpirePrefixPatch
         public static void patch(MasterDeckSortHeader __instance, SortHeaderButton button, boolean isAscending, MasterDeckViewScreen ___masterDeckView) {
             Comparator<AbstractCard> order = BY_UPGRADE;
