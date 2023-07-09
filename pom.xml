@@ -20,7 +20,7 @@
     <name>Upgrade Filter</name>
     <version>1.0.0</version>
     <description>Allows deck screen filtering by upgrade</description>
-    <groupId>lockeddoors.com</groupId>
+    <groupId>com.lockeddoors</groupId>
     <artifactId>upgradefilter</artifactId>
 
     <dependencies>
