@@ -1,7 +1,10 @@
 package com.lockeddoors.upgradefilter.patch;
 
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.lockeddoors.upgradefilter.UpgradeFilter;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.screens.MasterDeckSortHeader;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
@@ -16,7 +19,8 @@ public class UpgradeFilterPatches {
     public static class AddUpgradeFilterButton {
         @SpirePrefixPatch
         public static void patch(MasterDeckSortHeader __instance) {
-            SortHeaderButton upgradeButton = new SortHeaderButton("Upgraded", MasterDeckSortHeader.START_X, 0.0F, __instance);
+            String label = CardCrawlGame.languagePack.getUIString(UpgradeFilter.makeID("FilterLabel")).TEXT[0];
+            SortHeaderButton upgradeButton = new SortHeaderButton(label, MasterDeckSortHeader.START_X, 0.0F, __instance);
             SortHeaderButton[] newButtons = new SortHeaderButton[__instance.buttons.length + 1];
             for (int i = 0; i < __instance.buttons.length; i++) {
                 newButtons[i] = __instance.buttons[i];
