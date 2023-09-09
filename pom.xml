@@ -19,7 +19,7 @@
 
     <name>Upgrade Filter</name>
     <version>1.0.0</version>
-    <description>Allows deck screen filtering by upgrade</description>
+    <description>Allows card filtering by upgraded status</description>
     <groupId>com.lockeddoors</groupId>
     <artifactId>upgradefilter</artifactId>
 
